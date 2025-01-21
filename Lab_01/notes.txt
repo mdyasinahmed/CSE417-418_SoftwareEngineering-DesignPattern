@@ -1,0 +1,6 @@
+Class On OOPs Discussions -
+	Discussed -
+		1. Polymorphism
+		2. Inheritance
+		3. Abstraction
+		4. Encapsulation  
