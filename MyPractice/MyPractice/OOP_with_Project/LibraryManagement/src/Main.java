@@ -1,8 +1,8 @@
 package MyPractice.OOP_with_Project.LibraryManagement.src;
 
-import MyPractice.OOP_with_Project.LibraryManagement.src.models.*;
-import MyPractice.OOP_with_Project.LibraryManagement.src.services.Library;
 import java.util.Scanner;
+
+import MyPractice.OOP_with_Project.LibraryManagement.src.services.Library;
 
 public class Main {
     public static void main(String[] args) {
