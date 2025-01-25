@@ -11,10 +11,10 @@ public abstract class Course {
         this.duration = duration;
     }
 
-    // Abstract method (must be implemented by subclasses)
+    // Abstract method
     public abstract void showCourseDetails();
 
-    // Non-abstract method (optional implementation in subclasses)
+    // Non-abstract method
     public void commonFeatures() {
         System.out.println("All courses have assignments and quizzes.");
     }
