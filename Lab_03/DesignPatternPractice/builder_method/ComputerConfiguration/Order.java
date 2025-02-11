@@ -1,35 +1,43 @@
 package Lab_03.DesignPatternPractice.builder_method.ComputerConfiguration;
 
 final class Order {
-    private String Processor;
-    private String Storage;
-    private String Graphics_card;
+    private final String processor;
+    private final String storage;
+    private final String graphicsCard;
 
-    // Order(String Processor, String Storage, String Graphics_card){
-    //     Processor = this.Processor;
-    //     Storage = this.Storage;
-    //     Graphics_card = this.Graphics_card;
-    // }
-
-    public Order setProcessor(String Processor) {
-        this.Processor = Processor;
-        return this;
+    private Order(Builder builder) {
+        this.processor = builder.processor;
+        this.storage = builder.storage;
+        this.graphicsCard = builder.graphicsCard;
     }
 
-    public Order setStorage(String Storage) {
-        this.Storage = Storage;
-        return this;
-    }
+    public static class Builder {
+        private String processor;
+        private String storage;
+        private String graphicsCard;
 
-    public Order setGraphics_card(String Graphics_card) {
-        this.Graphics_card = Graphics_card;
-        return this;
+        public Builder setProcessor(String processor) {
+            this.processor = processor;
+            return this;
+        }
+
+        public Builder setStorage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+
+        public Builder setGraphicsCard(String graphicsCard) {
+            this.graphicsCard = graphicsCard;
+            return this;
+        }
+
+        public Order build() {
+            return new Order(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "Processor = " + this.Processor + "\nStorage = " + this.Storage + "\nGraphics Card = " + this.Graphics_card + "\n";
+        return "Processor = " + this.processor + "\nStorage = " + this.storage + "\nGraphics Card = " + this.graphicsCard + "\n";
     }
-
-
 }
