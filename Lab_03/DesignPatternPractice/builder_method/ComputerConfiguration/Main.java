@@ -2,20 +2,20 @@ package Lab_03.DesignPatternPractice.builder_method.ComputerConfiguration;
 
 public class Main {
     public static void main(String[] args) {
-        Order order1 = new Order();
-
-        order1.setProcessor("i3")
+        Order order1 = new Order.Builder()
+                .setProcessor("i3")
                 .setStorage("8/256")
-                .setGraphics_card("NVDIA");
+                .setGraphicsCard("NVIDIA")
+                .build();
 
-        System.out.println("Order 1 Info:\n" + order1.toString());
+        System.out.println("Order 1 Info:\n" + order1);
 
-        Order order2 = new Order();
-            order2.setProcessor("AMD Ryzen")
+        Order order2 = new Order.Builder()
+                .setProcessor("AMD Ryzen")
                 .setStorage("16/512")
-                .setGraphics_card("AMD");
+                .setGraphicsCard("AMD")
+                .build();
 
-        System.out.println("Order 2 Info:\n" + order2.toString());
-        
+        System.out.println("Order 2 Info:\n" + order2);
     }
 }
