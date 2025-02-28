@@ -1,4 +1,4 @@
-package Lab_01.code;
+package Lab_00.code;
 import java.util.Scanner;
 
 public class pattern {

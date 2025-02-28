@@ -1,4 +1,4 @@
-package Lab_01.code;
+package Lab_00.code;
 
 // class Student{
 //     Student(String Name, String ID, float CGP) {
