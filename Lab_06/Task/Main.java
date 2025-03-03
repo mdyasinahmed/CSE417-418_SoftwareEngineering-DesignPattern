@@ -35,6 +35,12 @@ class Context {
 public class Main {
     public static void main(String[] args) {
         Context context = new Context(new BkashPayment());
-        System.out.println("Paid with Bkash " + context.doPayment(500));
+        System.out.println("Paid with Bkash. Amount: " + context.doPayment(500));
+
+        context = new Context(new CashOnDelivery());
+        System.out.println("Paid with Cash on Delivery. Amount: " + context.doPayment(1500));
+
+        context = new Context(new CreditCardPayment());
+        System.out.println("Paid with Credit Card. Amount: " + context.doPayment(50000));
     }
 }
