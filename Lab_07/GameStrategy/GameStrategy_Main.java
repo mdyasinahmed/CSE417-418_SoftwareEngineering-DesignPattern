@@ -15,6 +15,7 @@ class Ranged_Attack implements AttackStrategy{
         System.out.println("Fires with Riffle from a distance!");
     }
 }
+
 class Magic_Attack implements AttackStrategy{
     public void performAttack(){
         System.out.println("Casts a fireball with magic!");
