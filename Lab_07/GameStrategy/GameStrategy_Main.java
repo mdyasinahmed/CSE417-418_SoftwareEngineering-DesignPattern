@@ -21,7 +21,7 @@ class Magic_Attack implements AttackStrategy{
     }
 }
 
-class StealthAttack implements AttackStrategy{
+class Stealth_Attack implements AttackStrategy{
     public void performAttack(){
         System.out.println("Attacked with Stealth!");
     }
@@ -58,7 +58,7 @@ public class GameStrategy_Main {
         context.doAttack();
         context.new_line();
 
-        context = new Context(new StealthAttack());
+        context = new Context(new Stealth_Attack());
         context.doAttack();
         context.new_line();
     }
