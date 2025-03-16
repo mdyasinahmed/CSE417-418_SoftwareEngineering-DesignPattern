@@ -11,4 +11,4 @@
 | 4       | Singleton Design Pattern                   | 17-02-2025 |
 | 5       | Singleton Design Pattern Task              | 24-02-2025 |
 | 6       | Strategy Design Pattern                    | 03-03-2025 |
-| 7       | Singleton Design Pattern Task              | 10-03-2025 |
+| 7       | Strategy Design Pattern Task               | 10-03-2025 |
