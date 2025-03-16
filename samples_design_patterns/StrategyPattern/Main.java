@@ -1,4 +1,4 @@
-package Design_Patterns.StrategyPattern;
+package samples_design_patterns.StrategyPattern;
 
 interface Strategy {
     public int performanceOperation(int a, int b);

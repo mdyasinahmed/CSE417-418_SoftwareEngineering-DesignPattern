@@ -1,4 +1,4 @@
-package Design_Patterns.singleton;
+package samples_design_patterns.singleton;
 
 public class Product {
     private static Product product_instance;
