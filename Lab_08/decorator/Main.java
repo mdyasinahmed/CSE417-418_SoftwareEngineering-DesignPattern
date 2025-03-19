@@ -1,128 +1,169 @@
 package Lab_08.decorator;
 
-interface AmanUllahConvensionHall {
-    String book();
-    double cost();
+// Component Interface
+interface HallBooking {
+    String getDescription();
+    double getCost();
 }
 
 // Concrete Component
-class BasicHall implements AmanUllahConvensionHall {
+class BasicHallBooking implements HallBooking {
     @Override
-    public String book() {
-        return "Booked Aman Ullah for ";
+    public String getDescription() {
+        return "Basic Hall";
     }
 
     @Override
-    public double cost() {
+    public double getCost() {
         return 50000; // Base cost
     }
 }
 
 // Abstract Decorator
-abstract class HallDecorator implements AmanUllahConvensionHall {
-    protected AmanUllahConvensionHall hallBooking;
+abstract class HallDecorator implements HallBooking {
+    protected HallBooking hallBooking;
 
-    public HallDecorator(AmanUllahConvensionHall hallBooking) {
+    public HallDecorator(HallBooking hallBooking) {
         this.hallBooking = hallBooking;
     }
 
     @Override
-    public String book() {
-        return hallBooking.book();
+    public String getDescription() {
+        return hallBooking.getDescription();
     }
 
     @Override
-    public double cost() {
-        return hallBooking.cost();
+    public double getCost() {
+        return hallBooking.getCost();
     }
 }
 
-class Wedding extends HallDecorator {
-    public Wedding(AmanUllahConvensionHall hallBooking) {
+// Event Decorators
+class WeddingDecorator extends HallDecorator {
+    public WeddingDecorator(HallBooking hallBooking) {
         super(hallBooking);
     }
 
     @Override
-    public String book() {
-        return super.book() + "Wedding.\nExtra: Sound System, Heavy Meal";
+    public String getDescription() {
+        return super.getDescription() + ", Wedding Setup";
     }
 
     @Override
-    public double cost() {
-        return super.cost() + 120000;
+    public double getCost() {
+        return super.getCost() + 120000;
     }
 }
 
-class BirthdayParty extends HallDecorator {
-    public BirthdayParty(AmanUllahConvensionHall hallBooking) {
+class BirthdayPartyDecorator extends HallDecorator {
+    public BirthdayPartyDecorator(HallBooking hallBooking) {
         super(hallBooking);
     }
 
     @Override
-    public String book() {
-        return super.book() + "Birthday Party\nExtra: Light Dinner";
+    public String getDescription() {
+        return super.getDescription() + ", Birthday Party Setup";
     }
 
     @Override
-    public double cost() {
-        return super.cost() + 30000;
+    public double getCost() {
+        return super.getCost() + 30000;
     }
 }
 
-class IELTS_Exam extends HallDecorator {
-    public IELTS_Exam(AmanUllahConvensionHall hallBooking) {
+class IELTSExamDecorator extends HallDecorator {
+    public IELTSExamDecorator(HallBooking hallBooking) {
         super(hallBooking);
     }
 
     @Override
-    public String book() {
-        return super.book() + "IELTS Exam\nExtra: Exam Setup Decoration";
+    public String getDescription() {
+        return super.getDescription() + ", IELTS Exam Setup";
     }
 
     @Override
-    public double cost() {
-        return super.cost() + 50000;
+    public double getCost() {
+        return super.getCost() + 50000;
     }
 }
 
-class TechWorkshop extends HallDecorator {
-    public TechWorkshop(AmanUllahConvensionHall hallBooking) {
+class TechWorkshopDecorator extends HallDecorator {
+    public TechWorkshopDecorator(HallBooking hallBooking) {
         super(hallBooking);
     }
 
     @Override
-    public String book() {
-        return super.book() + "Tech Workshop\nExtra: Projector, Loud Speaker, Whiteboard";
+    public String getDescription() {
+        return super.getDescription() + ", Tech Workshop Setup";
     }
 
     @Override
-    public double cost() {
-        return super.cost() + 25000;
+    public double getCost() {
+        return super.getCost() + 25000;
+    }
+}
+
+// Additional Service Decorators
+class CateringServiceDecorator extends HallDecorator {
+    public CateringServiceDecorator(HallBooking hallBooking) {
+        super(hallBooking);
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription() + ", Catering Service";
+    }
+
+    @Override
+    public double getCost() {
+        return super.getCost() + 20000;
+    }
+}
+
+class AudioVisualDecorator extends HallDecorator {
+    public AudioVisualDecorator(HallBooking hallBooking) {
+        super(hallBooking);
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription() + ", Audio-Visual Setup";
+    }
+
+    @Override
+    public double getCost() {
+        return super.getCost() + 15000;
+    }
+}
+
+class ExtraSeatingDecorator extends HallDecorator {
+    public ExtraSeatingDecorator(HallBooking hallBooking) {
+        super(hallBooking);
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription() + ", Extra Seating";
+    }
+
+    @Override
+    public double getCost() {
+        return super.getCost() + 10000;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        AmanUllahConvensionHall basicHall = new BasicHall();
+        HallBooking hall = new BasicHallBooking();
 
-        // Booking a Wedding Hall
-        AmanUllahConvensionHall wedding = new Wedding(basicHall);
-        System.out.println(wedding.book());
-        System.out.println("Total Cost: $" + wedding.cost() + "\n");
+        // Booking a Wedding with Catering and Audio-Visual Setup
+        HallBooking weddingBooking = new CateringServiceDecorator(new AudioVisualDecorator(new WeddingDecorator(hall)));
+        System.out.println("Booking Details: " + weddingBooking.getDescription());
+        System.out.println("Total Cost: BDT " + weddingBooking.getCost() + "\n");
 
-        // Booking a Birthday Party Hall
-        AmanUllahConvensionHall birthday_party = new BirthdayParty(basicHall);
-        System.out.println(birthday_party.book());
-        System.out.println("Total Cost: $" + birthday_party.cost() + "\n");
-
-        // Booking a Birthday Party Hall
-        AmanUllahConvensionHall ielts_exam = new IELTS_Exam(basicHall);
-        System.out.println(ielts_exam.book());
-        System.out.println("Total Cost: $" + ielts_exam.cost() + "\n");
-
-        // Booking a Birthday Party Hall
-        AmanUllahConvensionHall tech_workshop = new TechWorkshop(basicHall);
-        System.out.println(tech_workshop.book());
-        System.out.println("Total Cost: $" + tech_workshop.cost() + "\n");
+        // Booking an IELTS Exam with Extra Seating
+        HallBooking ieltsBooking = new ExtraSeatingDecorator(new IELTSExamDecorator(hall));
+        System.out.println("Booking Details: " + ieltsBooking.getDescription());
+        System.out.println("Total Cost: BDT " + ieltsBooking.getCost() + "\n");
     }
 }
