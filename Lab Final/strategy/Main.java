@@ -39,7 +39,7 @@ class Context {
     }
 }
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
         Context context = new Context(new CashOnDelivery());
         System.out.println("Cash On Delivery Paid. Amount: " + context.doPayment(999));
