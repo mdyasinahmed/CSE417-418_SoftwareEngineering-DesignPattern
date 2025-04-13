@@ -1,81 +1,56 @@
 package strategy_design_pattern;
 
-// Decorator Interface Class
-interface Dashboard {
-    String displayWidget();
+// Strategy Interface
+interface PaymentStrategy {
+    String pay(double amount);
 }
 
-// Base Class
-class BasicDashboard implements Dashboard {
-    public String displayWidget() {
-        return "Dashboard: Base";
-    }
-}
-
-// Abstract Class
-abstract class DashboardDecorator implements Dashboard {
-    protected Dashboard dashboard;
-
-    public DashboardDecorator(Dashboard dashboard) {
-        this.dashboard = dashboard;
-    }
-
-    public String displayWidget() {
-        return dashboard.displayWidget();
+// BkashPayment Concrete Strategy
+class BkashPayment implements PaymentStrategy {
+    public String pay(double amount) {
+        return "Payment is done using bKash for BDT " + amount;
     }
 }
 
-// WeatherWidget Decorator
-class WeatherWidget extends DashboardDecorator {
-    public WeatherWidget(Dashboard dashboard) {
-        super(dashboard);
-    }
-
-    public String displayWidget() {
-        return super.displayWidget() + " + Weather";
+// NagadPayment Concrete Strategy
+class NagadPayment implements PaymentStrategy {
+    public String pay(double amount) {
+        return "Payment is done using Nagad for BDT " + amount;
     }
 }
 
-// NewsWidget Decorator
-class NewsWidget extends DashboardDecorator {
-    public NewsWidget(Dashboard dashboard) {
-        super(dashboard);
-    }
-
-    public String displayWidget() {
-        return super.displayWidget() + " + News Feed";
+// CardPayment Concrete Strategy
+class CardPayment implements PaymentStrategy {
+    public String pay(double amount) {
+        return "Payment is done using Credit Card for BDT " + amount;
     }
 }
 
-// StockWidget Decorator
-class StockWidget extends DashboardDecorator {
-    public StockWidget(Dashboard dashboard) {
-        super(dashboard);
+// Checkout Context class
+class Checkout {
+    private PaymentStrategy paymentStrategy;
+
+    public void setPaymentStrategy(PaymentStrategy strategy) {
+        this.paymentStrategy = strategy;
     }
 
-    public String showWidgets() {
-        return super.displayWidget() + " + Stock Ticker";
-    }
-}
-
-// CalendarWidget Decorator
-class CalendarWidget extends DashboardDecorator {
-    public CalendarWidget(Dashboard dashboard) {
-        super(dashboard);
-    }
-
-    public String showWidgets() {
-        return super.displayWidget() + " + Calendar";
+    public void processPayment(double amount) {
+        System.out.println(paymentStrategy.pay(amount));
     }
 }
 
 // Main Class
-public class Main {
+public class Main{
     public static void main(String[] args) {
-        Dashboard dashboard = new BasicDashboard();
-        dashboard = new WeatherWidget(dashboard);
-        dashboard = new StockWidget(dashboard);
+        Checkout checkout = new Checkout();
 
-        System.out.println(dashboard.displayWidget());
+        checkout.setPaymentStrategy(new BkashPayment());
+        checkout.processPayment(500);
+
+        checkout.setPaymentStrategy(new NagadPayment());
+        checkout.processPayment(1000);
+
+        checkout.setPaymentStrategy(new CardPayment());
+        checkout.processPayment(1500);
     }
 }
