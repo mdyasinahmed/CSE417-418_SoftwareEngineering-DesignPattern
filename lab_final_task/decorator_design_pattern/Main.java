@@ -73,8 +73,8 @@ class CalendarWidget extends DashboardDecorator {
 public class Main {
     public static void main(String[] args) {
         Dashboard dashboard = new BasicDashboard();
-        dashboard = new WeatherWidget(dashboard);
         dashboard = new StockWidget(dashboard);
+        dashboard = new WeatherWidget(dashboard);
 
         System.out.println(dashboard.displayWidget());
     }
